@@ -13,7 +13,28 @@
     initStatCountUp();
     initCardGlow();
     initSkillShine();
+    initMobileMenu();
   });
+
+  // Mobile hamburger menu toggle
+  function initMobileMenu() {
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
+    if (!toggle || !menu) return;
+
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+
+    // Close menu after tapping a link
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        menu.classList.remove('open');
+      });
+    });
+  }
 
   // 1. Scroll-reveal fade-ins — works identically on any screen size
   function initScrollReveal() {
