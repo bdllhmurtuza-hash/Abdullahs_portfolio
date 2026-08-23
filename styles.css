@@ -242,8 +242,17 @@
   .contact-inner > p{max-width:700px; margin:0 auto 52px; font-size:22px; color:rgba(0,0,0,0.72);}
   .contact-links{display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
   .contact-links a{font-family:var(--mono); font-size:14px; padding:16px 26px; border-radius:40px; border:1.5px solid #111;}
-  .contact-links a.primary{background:#111; color:#fff;}
-  .contact-links a:not(.primary){color:#111;}
+  .contact-links a.primary{background:#111; color:#fff; border:1.5px solid #111;}
+  .contact-links a:not(.primary){
+    color:#fff;
+    background:#d94e0c;
+    border:1.5px solid #111;
+  }
+  .contact-links a:not(.primary):hover{
+    background:#c2450a;
+  }
+  .resume-arrow{display:inline-block; transition:transform 0.25s ease;}
+  .resume-btn:hover .resume-arrow{transform:rotate(-90deg);}
   footer{text-align:center; padding:36px 0; font-family:var(--mono); font-size:12px; color:#fff; background:var(--orange);}
 
   /* --- Animation layer (script.js) --- */
