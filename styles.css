@@ -14,6 +14,7 @@
     --mono: 'JetBrains Mono', monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
+  html, body{max-width:100%; overflow-x:hidden;}
   html{scroll-behavior:smooth;}
   body{font-family:var(--sans); background:var(--bg-light); color:var(--ink); line-height:1.6; -webkit-font-smoothing:antialiased;}
   a{color:inherit; text-decoration:none;}
@@ -152,6 +153,7 @@
 
   h2.section-title{font-family:var(--sans); font-weight:700; font-size:clamp(38px,6.4vw,78px); letter-spacing:-0.02em; line-height:1.02; max-width:760px; margin-bottom:20px;}
   #skills .section-title{white-space:nowrap; max-width:none;}
+  @media (max-width:600px){ #skills .section-title{white-space:normal; max-width:100%;} }
   .section-lede{color:var(--ink-dim); max-width:600px; font-size:16px; margin-bottom:48px;}
   section.dark .section-lede{color:var(--ink-white-dim);}
 
@@ -164,6 +166,7 @@
 
   .project-divider{width:100%; height:14px; background:var(--orange); margin:56px 0 0;}
   #work .section-title{font-size:clamp(36px,6.6vw,100px); margin-bottom:56px; white-space:nowrap; max-width:none;}
+  @media (max-width:600px){ #work .section-title{white-space:normal; max-width:100%;} }
   #work.dark{padding-bottom:0;}
   #work .wrap:last-of-type{padding-top:56px; padding-bottom:110px;}
   @media (max-width:600px){ #work .wrap:last-of-type{padding-top:32px; padding-bottom:56px;} }
