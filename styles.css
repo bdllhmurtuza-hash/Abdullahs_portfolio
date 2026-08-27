@@ -155,6 +155,7 @@
   section.orange-block{background:var(--orange); color:#111;}
 
   h2.section-title{font-family:var(--sans); font-weight:700; font-size:clamp(38px,6.4vw,78px); letter-spacing:-0.02em; line-height:1.02; max-width:760px; margin-bottom:20px;}
+  @media (max-width:600px){ #education .section-title{font-size:clamp(42px,13vw,64px);} }
   #skills .section-title{white-space:nowrap; max-width:none;}
   @media (max-width:600px){ #skills .section-title{white-space:normal; max-width:100%; font-size:clamp(42px,13vw,64px);} }
   .section-lede{color:var(--ink-dim); max-width:600px; font-size:16px; margin-bottom:48px;}
@@ -289,7 +290,15 @@
   #skills{padding-top:24px;}
 }
 @media (max-width:800px){ .edu-grid{grid-template-columns:1fr;} }
-@media (max-width:600px){ .edu-card, .cert-card{padding:24px;} }
+@media (max-width:600px){
+  .edu-card, .cert-card{padding:24px;}
+  #education .wrap{padding:0 16px;}
+  .edu-school{font-size:24px;}
+  .edu-degree{font-size:14px;}
+  .edu-facts li{font-size:15.5px;}
+  .cert-card h3{font-size:13px;}
+  .cert-card p{font-size:15.5px;}
+}
 
   section.orange-block .eyebrow{color:rgba(0,0,0,0.55);}
   section.orange-block .eyebrow::before{color:#111;}
