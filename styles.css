@@ -304,10 +304,15 @@
   section.orange-block .eyebrow::before{color:#111;}
   .contact-inner{text-align:center;}
   .contact-inner h2{font-family:var(--sans); font-weight:700; font-size:clamp(48px,9.2vw,108px); max-width:980px; margin:0 auto 30px; line-height:1.0;}
+  @media (max-width:600px){ .contact-inner h2{font-size:clamp(58px,17vw,88px);} }
   .contact-inner h2 em{color:#111;}
   .contact-inner > p{max-width:700px; margin:0 auto 52px; font-size:22px; color:rgba(0,0,0,0.72);}
   .contact-links{display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
   .contact-links a{font-family:var(--mono); font-size:14px; padding:16px 26px; border-radius:40px; border:1.5px solid #111;}
+  @media (max-width:600px){
+    .contact-links{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    .contact-links a{padding:15px 10px; text-align:center; font-size:13px;}
+  }
   .contact-links a.primary{background:#111; color:#fff; border:1.5px solid #111;}
   .contact-links a:not(.primary){
     color:#fff;
@@ -320,6 +325,9 @@
   .resume-arrow{display:inline-block; transition:transform 0.25s ease;}
   .resume-btn:hover .resume-arrow{transform:rotate(-90deg);}
   footer{text-align:center; padding:36px 0; font-family:var(--mono); font-size:12px; color:#fff; background:var(--orange);}
+  @media (max-width:600px){
+    footer{padding:28px 24px; font-size:11.5px; line-height:1.7; text-wrap:balance;}
+  }
   @media (max-width:600px){ .contact-inner > p{font-size:16px; margin-bottom:36px;} }
 
   /* --- Animation layer (script.js) --- */
