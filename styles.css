@@ -203,6 +203,8 @@
   .track-meta::before{content:"— "; color:#8a8f98;}
   .track-dot{position:absolute; top:26px; right:26px; width:10px; height:10px; border-radius:50%; background:var(--orange); box-shadow:0 0 12px 2px rgba(255,97,26,0.55);}
   .track-title{font-family:var(--sans); font-size:clamp(38px,5.4vw,66px); font-weight:800; letter-spacing:-0.02em; color:#fff; margin-bottom:20px; line-height:1;}
+  .track-title.compact{font-size:clamp(30px,4.1vw,46px);}
+  @media (max-width:600px){ .track-title.compact{font-size:clamp(28px,7.5vw,36px);} }
   .track-status{font-family:var(--mono); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:#8a8f98; display:block; margin-bottom:20px;}
   .track-desc{color:#c7cbd1; font-size:18px; line-height:1.6; max-width:720px; margin-bottom:20px;}
   .track-desc em{font-style:italic; color:#fff;}
