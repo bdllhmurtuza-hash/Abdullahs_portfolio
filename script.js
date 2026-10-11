@@ -242,3 +242,216 @@ document.addEventListener('keydown', (e) => {
     closeResumeModal();
   }
 });
+
+(function () {
+  var picker = document.getElementById('docPicker');
+
+  window.openInternshipPicker = function () {
+    picker.classList.add('open');
+    picker.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    var first = picker.querySelector('.doc-option');
+    if (first) first.focus();
+  };
+
+  window.closeDocPicker = function () {
+    picker.classList.remove('open');
+    picker.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  window.pickDoc = function (path) {
+    window.closeDocPicker();
+    openCertificate(path);
+  };
+
+  picker.addEventListener('click', function (e) {
+    if (e.target === picker) window.closeDocPicker();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && picker.classList.contains('open')) window.closeDocPicker();
+  });
+})();
+
+(function () {
+  var DOC_SETS = {
+    inamigos: {
+      org: 'InAmigos Foundation',
+      title: 'Internship documents',
+      docs: [
+        { name: 'Certificate of Selection', path: 'certificates/Abdullah_Murtuza_Hired_Certificate-2.pdf' },
+        { name: 'Certificate of Completion', path: 'certificates/Abdullah Murtuza completion Certificate.pdf' },
+        { name: 'Offer Letter by IAF', path: 'certificates/Abdullah Murtuza Offer letter.pdf' }
+      ]
+    },
+    agratas: {
+      org: 'Agratas Educate Institute',
+      title: 'Course certificates',
+      docs: [
+        { name: 'Industrial Training Certificate', path: 'certificates/agratas-industrial-training.png' },
+        { name: 'Certificate of Appreciation', path: 'certificates/agratas-appreciation1.pdf' }
+      ]
+    }
+  };
+
+  var picker = document.getElementById('docPicker');
+  var list = document.getElementById('docOptions');
+  var orgEl = document.getElementById('docPickerOrg');
+  var titleEl = document.getElementById('docPickerTitle');
+
+  function makeOption(doc, index) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'doc-option';
+
+    var num = document.createElement('span');
+    num.className = 'doc-num';
+    num.textContent = ('0' + (index + 1)).slice(-2);
+
+    var name = document.createElement('span');
+    name.className = 'doc-name';
+    name.textContent = doc.name;
+
+    var arrow = document.createElement('span');
+    arrow.className = 'doc-arrow';
+    arrow.textContent = '↗';
+
+    btn.appendChild(num);
+    btn.appendChild(name);
+    btn.appendChild(arrow);
+    btn.addEventListener('click', function () {
+      window.closeDocPicker();
+      openCertificate(doc.path);
+    });
+    return btn;
+  }
+
+  window.openDocPicker = function (key) {
+    var set = DOC_SETS[key];
+    if (!set) return;
+    orgEl.textContent = set.org;
+    titleEl.textContent = set.title;
+    list.innerHTML = '';
+    set.docs.forEach(function (doc, i) { list.appendChild(makeOption(doc, i)); });
+
+    picker.classList.add('open');
+    picker.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    var first = list.querySelector('.doc-option');
+    if (first) first.focus();
+  };
+
+  window.closeDocPicker = function () {
+    picker.classList.remove('open');
+    picker.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  picker.addEventListener('click', function (e) {
+    if (e.target === picker) window.closeDocPicker();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && picker.classList.contains('open')) window.closeDocPicker();
+  });
+})();
+
+(function () {
+  var OWNER = 'bdllhmurtuza-hash';
+  var REPOS = {
+    pagenest: {
+      name: 'bookstore_PageNest',
+      url: 'https://github.com/bdllhmurtuza-hash/bookstore_PageNest',
+      desc: 'Full-stack online book buying & selling portal with a complete selling workflow, built solo as a college project.',
+      topics: ['Flask', 'Full-stack', 'Responsive']
+    },
+    medcopilot: {
+      name: 'AIVOA-Med_Complaint-Copilot',
+      url: 'https://github.com/bdllhmurtuza-hash/AIVOA-Med_Complaint-Copilot',
+      desc: 'AI-powered medical complaint system that automates intake, review and triage, with duplicate detection and risk assessment.',
+      topics: ['React', 'FastAPI', 'LangGraph', 'OpenRouter']
+    },
+    buglens: {
+      name: 'BugLens',
+      url: 'https://github.com/bdllhmurtuza-hash/BugLens',
+      desc: 'Turns error screenshots into structured, developer-ready bug reports with root cause, evidence and a recommended fix.',
+      topics: ['React', 'Flask', 'Gemini API', 'Gemma']
+    }
+  };
+
+  var popup = document.getElementById('ghPopup');
+  var nameEl = document.getElementById('ghName');
+  var descEl = document.getElementById('ghDesc');
+  var topicsEl = document.getElementById('ghTopics');
+  var cloneEl = document.getElementById('ghClone');
+  var copyBtn = document.getElementById('ghCopy');
+  var goBtn = document.getElementById('ghGo');
+  var copyTimer;
+
+  window.openRepoPopup = function (key) {
+    var repo = REPOS[key];
+    if (!repo) return;
+    nameEl.textContent = repo.name;
+    descEl.textContent = repo.desc;
+    goBtn.href = repo.url;
+
+    topicsEl.innerHTML = '';
+    repo.topics.forEach(function (t) {
+      var pill = document.createElement('span');
+      pill.className = 'gh-topic';
+      pill.textContent = t;
+      topicsEl.appendChild(pill);
+    });
+
+    cloneEl.innerHTML = '';
+    var cmd = document.createElement('b');
+    cmd.textContent = 'git clone ';
+    cloneEl.appendChild(cmd);
+    cloneEl.appendChild(document.createTextNode(repo.url + '.git'));
+    copyBtn.textContent = 'Copy';
+
+    popup.classList.add('open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    goBtn.focus();
+  };
+
+  window.closeRepoPopup = function () {
+    popup.classList.remove('open');
+    popup.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  function flashCopied() {
+    copyBtn.textContent = 'Copied ✓';
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1600);
+  }
+
+  copyBtn.addEventListener('click', function () {
+    var text = cloneEl.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(flashCopied);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); flashCopied(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  });
+
+  goBtn.addEventListener('click', function () {
+    setTimeout(window.closeRepoPopup, 150);
+  });
+
+  popup.addEventListener('click', function (e) {
+    if (e.target === popup) window.closeRepoPopup();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && popup.classList.contains('open')) window.closeRepoPopup();
+  });
+})();

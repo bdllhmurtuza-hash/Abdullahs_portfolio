@@ -608,3 +608,55 @@
 @media (max-width: 500px){
   .resume-box{ padding: 32px 24px; }
 }
+
+/* ===== Internship document picker (glassmorphism) ===== */
+.doc-picker{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(8,8,12,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
+.doc-picker.open{opacity:1;visibility:visible}
+.doc-picker-box{position:relative;isolation:isolate;width:100%;max-width:460px;padding:34px 28px 28px;border-radius:24px;overflow:hidden;color:#fff;background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(28px) saturate(150%);backdrop-filter:blur(28px) saturate(150%);box-shadow:0 30px 80px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.22);transform:translateY(16px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.doc-picker.open .doc-picker-box{transform:none}
+.doc-picker-box::before{content:"";position:absolute;z-index:-1;top:-90px;right:-70px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,97,26,.45),transparent 70%);pointer-events:none}
+.doc-picker-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:20px;line-height:1;cursor:pointer;transition:background .2s,border-color .2s}
+.doc-picker-close:hover{background:rgba(255,97,26,.25);border-color:rgba(255,97,26,.7)}
+.doc-picker-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#ff611a;margin-bottom:10px}
+.doc-picker-box h3{margin:0 0 6px;font-family:'Inter Tight',sans-serif;font-size:26px;font-weight:700;letter-spacing:-.01em;color:#fff}
+.doc-picker-sub{margin:0 0 20px;font-size:14px;color:rgba(255,255,255,.62)}
+.doc-option{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;width:100%;margin-top:10px;padding:14px 16px;text-align:left;font:inherit;color:#fff;cursor:pointer;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);transition:transform .2s ease,background .2s ease,border-color .2s ease}
+.doc-option:hover,.doc-option:focus-visible{outline:none;transform:translateY(-2px);background:rgba(255,97,26,.14);border-color:rgba(255,97,26,.7)}
+.doc-num{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#ff611a;background:rgba(255,97,26,.15)}
+.doc-name{font-family:'Inter Tight',sans-serif;font-size:16px;font-weight:600}
+.doc-arrow{color:#ff611a;font-size:18px;transition:transform .2s ease}
+.doc-option:hover .doc-arrow,.doc-option:focus-visible .doc-arrow{transform:translate(2px,-2px)}
+@media (max-width:480px){.doc-picker-box{padding:30px 20px 22px;border-radius:20px}.doc-picker-box h3{font-size:22px}}
+@media (prefers-reduced-motion:reduce){.doc-picker,.doc-picker-box,.doc-option,.doc-arrow{transition:none}}
+
+/* ===== GitHub repo popup (GitHub dark theme) ===== */
+.gh-popup{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(1,4,9,.72);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .2s ease,visibility .2s ease}
+.gh-popup.open{opacity:1;visibility:visible}
+.gh-box{position:relative;width:100%;max-width:480px;overflow:hidden;border-radius:12px;background:#0d1117;border:1px solid #30363d;box-shadow:0 24px 70px rgba(1,4,9,.8);color:#e6edf3;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;transform:translateY(12px) scale(.98);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.gh-popup.open .gh-box{transform:none}
+.gh-head{display:flex;align-items:center;gap:10px;padding:14px 48px 14px 18px;background:#161b22;border-bottom:1px solid #30363d}
+.gh-mark{flex:none;width:22px;height:22px;fill:#e6edf3}
+.gh-path{min-width:0;font-size:15px;color:#7d8590;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gh-name{font-weight:600;color:#58a6ff}
+.gh-pill{flex:none;padding:0 8px;line-height:20px;font-size:12px;font-weight:500;color:#7d8590;border:1px solid #30363d;border-radius:2em}
+.gh-close{position:absolute;top:10px;right:12px;width:30px;height:30px;border:none;border-radius:6px;background:transparent;color:#7d8590;font-size:22px;line-height:1;cursor:pointer;transition:background .15s,color .15s}
+.gh-close:hover{background:#21262d;color:#e6edf3}
+.gh-body{padding:18px}
+.gh-desc{margin:0 0 14px;font-size:14px;line-height:1.55;color:#e6edf3}
+.gh-topics{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.gh-topic{padding:0 10px;line-height:22px;font-size:12px;font-weight:500;color:#58a6ff;background:rgba(56,139,253,.1);border-radius:2em}
+.gh-clone{display:flex;align-items:center;gap:8px;padding:6px 6px 6px 12px;margin-bottom:14px;background:#010409;border:1px solid #30363d;border-radius:6px}
+.gh-clone code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,"JetBrains Mono",Menlo,monospace;font-size:12.5px;color:#7d8590;scrollbar-width:none}
+.gh-clone code::-webkit-scrollbar{display:none}
+.gh-clone code b{font-weight:400;color:#e6edf3}
+.gh-copy{flex:none;padding:0 10px;line-height:26px;font-size:12px;font-weight:500;color:#e6edf3;background:#21262d;border:1px solid #30363d;border-radius:6px;cursor:pointer;transition:background .15s,border-color .15s}
+.gh-copy:hover{background:#30363d;border-color:#8b949e}
+.gh-note{margin:0 0 16px;font-size:12.5px;color:#7d8590}
+.gh-actions{display:flex;justify-content:flex-end;gap:10px}
+.gh-btn{display:inline-flex;align-items:center;gap:6px;padding:0 16px;line-height:32px;font:500 14px/32px -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:#e6edf3;text-decoration:none;background:#21262d;border:1px solid rgba(240,246,252,.1);border-radius:6px;cursor:pointer;transition:background .15s,border-color .15s}
+.gh-btn:hover{background:#30363d;border-color:#8b949e}
+.gh-btn-primary{color:#fff;background:#238636;border-color:rgba(240,246,252,.1)}
+.gh-btn-primary:hover{background:#2ea043;border-color:rgba(240,246,252,.1)}
+.gh-btn:focus-visible,.gh-copy:focus-visible,.gh-close:focus-visible{outline:2px solid #1f6feb;outline-offset:2px}
+@media (max-width:480px){.gh-head{padding-left:14px}.gh-body{padding:16px 14px}.gh-actions .gh-btn{flex:1;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.gh-popup,.gh-box{transition:none}}
