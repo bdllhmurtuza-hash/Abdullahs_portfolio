@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Playfair+Display:ital@1&family=JetBrains+Mono:wght@400;500;700&family=Share+Tech+Mono&family=DotGothic16&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 <header>
@@ -260,9 +260,9 @@
     <h2>Let's <em>build</em> something real.</h2>
     <p>Open to internships and real-world ML projects. If you've got something worth building, I'd like to hear about it.</p>
     <div class="contact-links">
-      <a href="mailto:bdllhmurtuza@gmail.com" class="primary">Email Me</a>
-      <a href="https://www.linkedin.com/in/abdullah-murtuza-5949b536b/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/bdllhmurtuza-hash" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:bdllhmurtuza@gmail.com" class="primary" onclick="openContactPopup('gmail'); return false;">Email Me</a>
+      <a href="https://www.linkedin.com/in/abdullah-murtuza-5949b536b/" target="_blank" rel="noopener" onclick="openContactPopup('linkedin'); return false;">LinkedIn</a>
+      <a href="https://github.com/bdllhmurtuza-hash" target="_blank" rel="noopener" onclick="openContactPopup('github'); return false;">GitHub</a>
       <a href="#" class="resume-btn" onclick="openResumeModal(); return false;"><span class="resume-arrow">↓</span> Resume</a>
     </div>
   </div>
@@ -325,6 +325,79 @@
   <svg class="desk-tip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="12.5" rx="2"/><path d="M8 20.5h8M12 16.5v4"/></svg>
   <p><strong>Best viewed on desktop</strong><span>For the full experience, open this portfolio on a laptop or desktop.</span></p>
   <button class="desk-tip-close" onclick="closeDeskTip()" aria-label="Dismiss">×</button>
+</div>
+
+<div class="ct-popup" id="ctPopup" aria-hidden="true">
+
+  <!-- GitHub -->
+  <div class="ct-card ct-gh" id="ct-github" role="dialog" aria-modal="true" aria-labelledby="ctGhName">
+    <div class="ct-gh-top">
+      <span>GitHub</span>
+      <button class="ct-close" onclick="closeContactPopup()" aria-label="Close">×</button>
+    </div>
+    <div class="ct-gh-body">
+      <div class="ct-gh-id">
+        <div class="ct-gh-logo"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></div>
+        <div>
+          <div class="ct-gh-name" id="ctGhName">Mohammed Abdullah Murtuza</div>
+          <div class="ct-gh-user">bdllhmurtuza-hash</div>
+        </div>
+      </div>
+      <p class="ct-gh-bio">Computer Science student focused on machine learning and AI. Hyderabad, India.</p>
+      <p class="ct-gh-label">Repositories</p>
+      <div class="ct-gh-repos">
+        <div class="ct-gh-repo">bookstore_PageNest<span>Public</span></div>
+        <div class="ct-gh-repo">AIVOA-Med_Complaint-Copilot<span>Public</span></div>
+        <div class="ct-gh-repo">BugLens<span>Public</span></div>
+      </div>
+      <div class="ct-dest"><span>↗</span><span>Opens <b>github.com/bdllhmurtuza-hash</b> in a new tab</span></div>
+      <div class="ct-actions">
+        <button class="ct-btn" type="button" onclick="closeContactPopup()">Cancel</button>
+        <a class="ct-btn ct-btn-primary" data-primary href="https://github.com/bdllhmurtuza-hash" target="_blank" rel="noopener">Open GitHub profile ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- LinkedIn -->
+  <div class="ct-card ct-li" id="ct-linkedin" role="dialog" aria-modal="true" aria-labelledby="ctLiName">
+    <div class="ct-li-banner">
+      <button class="ct-close" onclick="closeContactPopup()" aria-label="Close">×</button>
+    </div>
+    <div class="ct-li-body">
+      <div class="ct-li-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#0a66c2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+      <h3 class="ct-li-name" id="ctLiName">Mohammed Abdullah Murtuza</h3>
+      <p class="ct-li-headline">ML Developer · Computer Science student at NSAKCET</p>
+      <p class="ct-li-meta">Hyderabad, Telangana, India</p>
+      <span class="ct-li-open">Open to internships</span>
+      <div class="ct-dest"><span>↗</span><span><b>linkedin.com/in/abdullah-murtuza-5949b536b</b>Opens in a new tab</span></div>
+      <div class="ct-actions">
+        <button class="ct-btn" type="button" onclick="closeContactPopup()">Cancel</button>
+        <a class="ct-btn ct-btn-primary" data-primary href="https://www.linkedin.com/in/abdullah-murtuza-5949b536b/" target="_blank" rel="noopener">View on LinkedIn ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gmail -->
+  <div class="ct-card ct-gm" id="ct-gmail" role="dialog" aria-modal="true" aria-labelledby="ctGmTitle">
+    <div class="ct-gm-bar">
+      <span id="ctGmTitle">New Message</span>
+      <button class="ct-close" onclick="closeContactPopup()" aria-label="Close">×</button>
+    </div>
+    <div class="ct-gm-row"><span class="ct-gm-label">To</span><span class="ct-gm-chip"><i class="ct-gm-dot">A</i><span id="ctEmail">bdllhmurtuza@gmail.com</span></span></div>
+    <div class="ct-gm-row"><span class="ct-gm-label">Subject</span><span>Reaching out from your portfolio</span></div>
+    <div class="ct-gm-text">Hi Abdullah,
+
+I came across your portfolio and would like to get in touch.
+
+Thanks!</div>
+    <div class="ct-dest"><span>↗</span><span>Opens <b>mail.google.com</b> in a new tab, or use your mail app</span></div>
+    <div class="ct-actions">
+      <a class="ct-btn ct-btn-primary" data-primary href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=bdllhmurtuza@gmail.com&amp;su=Reaching%20out%20from%20your%20portfolio&amp;body=Hi%20Abdullah%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20get%20in%20touch.%0A%0AThanks!" target="_blank" rel="noopener">Compose in Gmail ↗</a>
+      <button class="ct-btn" id="ctCopy" type="button">Copy address</button>
+      <a class="ct-btn" href="mailto:bdllhmurtuza@gmail.com?subject=Reaching%20out%20from%20your%20portfolio&amp;body=Hi%20Abdullah%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20get%20in%20touch.%0A%0AThanks!">Mail app</a>
+    </div>
+  </div>
+
 </div>
 
 <script src="script.js"></script>

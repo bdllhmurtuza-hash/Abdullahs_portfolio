@@ -486,3 +486,66 @@ document.addEventListener('keydown', (e) => {
     timer = setTimeout(window.closeDeskTip, 9000);
   }, 1200);
 })();
+
+(function () {
+  var popup = document.getElementById('ctPopup');
+  if (!popup) return;
+  var cards = popup.querySelectorAll('.ct-card');
+  var copyBtn = document.getElementById('ctCopy');
+  var emailEl = document.getElementById('ctEmail');
+  var copyTimer;
+
+  window.openContactPopup = function (key) {
+    var target = document.getElementById('ct-' + key);
+    if (!target) return;
+    Array.prototype.forEach.call(cards, function (c) { c.classList.remove('active'); });
+    target.classList.add('active');
+    if (copyBtn) copyBtn.textContent = 'Copy address';
+    popup.classList.add('open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    var primary = target.querySelector('[data-primary]');
+    if (primary) primary.focus();
+  };
+
+  window.closeContactPopup = function () {
+    popup.classList.remove('open');
+    popup.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  // Close shortly after a destination link is followed
+  Array.prototype.forEach.call(popup.querySelectorAll('a.ct-btn'), function (a) {
+    a.addEventListener('click', function () { setTimeout(window.closeContactPopup, 150); });
+  });
+
+  function flashCopied() {
+    copyBtn.textContent = 'Copied ✓';
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function () { copyBtn.textContent = 'Copy address'; }, 1600);
+  }
+
+  if (copyBtn && emailEl) {
+    copyBtn.addEventListener('click', function () {
+      var text = emailEl.textContent.trim();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(flashCopied);
+      } else {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); flashCopied(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  popup.addEventListener('click', function (e) {
+    if (e.target === popup) window.closeContactPopup();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && popup.classList.contains('open')) window.closeContactPopup();
+  });
+})();
