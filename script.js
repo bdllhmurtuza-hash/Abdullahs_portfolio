@@ -455,3 +455,34 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && popup.classList.contains('open')) window.closeRepoPopup();
   });
 })();
+
+(function () {
+  var tip = document.getElementById('deskTip');
+  if (!tip) return;
+
+  var KEY = 'deskTipDismissed';
+  var timer;
+
+  function seen() {
+    try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; }
+  }
+  function remember() {
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+  }
+
+  window.closeDeskTip = function () {
+    clearTimeout(timer);
+    tip.classList.remove('show');
+    tip.setAttribute('aria-hidden', 'true');
+    remember();
+  };
+
+  // Only show on small screens, and only once per visitor
+  if (!window.matchMedia('(max-width: 900px)').matches || seen()) return;
+
+  setTimeout(function () {
+    tip.classList.add('show');
+    tip.setAttribute('aria-hidden', 'false');
+    timer = setTimeout(window.closeDeskTip, 9000);
+  }, 1200);
+})();

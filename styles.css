@@ -660,3 +660,15 @@
 .gh-btn:focus-visible,.gh-copy:focus-visible,.gh-close:focus-visible{outline:2px solid #1f6feb;outline-offset:2px}
 @media (max-width:480px){.gh-head{padding-left:14px}.gh-body{padding:16px 14px}.gh-actions .gh-btn{flex:1;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.gh-popup,.gh-box{transition:none}}
+
+/* ===== Desktop tip toast ===== */
+.desk-tip{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom, 0px));z-index:1500;display:flex;align-items:center;gap:12px;width:min(92vw,380px);padding:12px 12px 12px 14px;color:#fff;font-family:'Inter Tight',sans-serif;background:rgba(20,20,26,.74);border:1px solid rgba(255,255,255,.14);border-radius:16px;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);box-shadow:0 12px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.12);opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,16px);transition:opacity .35s ease,transform .35s cubic-bezier(.2,.8,.2,1),visibility .35s}
+.desk-tip.show{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}
+.desk-tip-icon{flex:none;width:24px;height:24px;color:#ff611a}
+.desk-tip p{flex:1;margin:0;min-width:0}
+.desk-tip strong{display:block;font-size:14px;font-weight:600;line-height:1.3}
+.desk-tip span{display:block;margin-top:2px;font-size:12.5px;line-height:1.4;color:rgba(255,255,255,.64)}
+.desk-tip-close{flex:none;width:28px;height:28px;border:none;border-radius:50%;background:rgba(255,255,255,.08);color:#fff;font-size:18px;line-height:1;cursor:pointer;transition:background .2s}
+.desk-tip-close:hover{background:rgba(255,97,26,.3)}
+@media (min-width:901px){.desk-tip{display:none}}
+@media (prefers-reduced-motion:reduce){.desk-tip{transition:none}}
